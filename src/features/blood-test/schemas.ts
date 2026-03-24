@@ -1,33 +1,29 @@
 import { z } from 'zod'
 
-export const uploadSourceTypeSchema = z.enum(["pdf", "image", "csv", "manual"])
-export const bloodTestStatusSchema = z.enum(["pending", "processed", "reviewed"])
+export const uploadSourceTypeSchema = z.enum(["csv", "pdf", "image"])
 export const biomarkerFlagSchema = z.enum(["low", "normal", "high"])
 
 export const referenceRangeSchema = z.object({
-	min: z.number(),
-	max: z.number(),
+	min: z.number().optional(),
+	max: z.number().optional(),
 })
 
 export const biomarkerSchema = z.object({
 	id: z.string().min(1),
 	name: z.string().min(1),
 	value: z.number(),
-	unit: z.string().optional(),
+	unit: z.string().min(1),
 	referenceRange: referenceRangeSchema.optional(),
-	date: z.string().min(1),
 	flag: biomarkerFlagSchema.optional(),
 })
 
 export const bloodTestResultSchema = z.object({
 	id: z.string().min(1),
-	userId: z.string().min(1),
-	date: z.string().min(1),
-	createdAt: z.string().min(1),
+	testDate: z.string().min(1),
+	uploadedAt: z.string().min(1),
+	sourceFileName: z.string().min(1),
 	sourceType: uploadSourceTypeSchema,
-	sourceFileUrl: z.string().optional(),
 	biomarkers: z.array(biomarkerSchema),
-	status: bloodTestStatusSchema,
 })
 
 export const chatRoleSchema = z.enum(["user", "assistant"])
@@ -41,7 +37,6 @@ export const chatMessageSchema = z.object({
 })
 
 export type UploadSourceType = z.infer<typeof uploadSourceTypeSchema>
-export type BloodTestStatus = z.infer<typeof bloodTestStatusSchema>
 export type BiomarkerFlag = z.infer<typeof biomarkerFlagSchema>
 export type Biomarker = z.infer<typeof biomarkerSchema>
 export type BloodTestResult = z.infer<typeof bloodTestResultSchema>

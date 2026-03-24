@@ -1,24 +1,32 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { BloodTestResult } from '../features/blood-test/types'
-import { mockExtractResults } from '../services/extraction/mockExtractResults'
-import { loadResults, saveResults } from '../services/storage/resultsStorage'
+import { getResults, saveResults } from '../services/storage/resultsStorage'
+
+export const BLOOD_TEST_SAVED_EVENT = 'bloodTestSaved'
 
 export default function useBloodTestHistory() {
   const [history, setHistory] = useState<BloodTestResult[]>([])
 
+  const loadHistory = useCallback(() => {
+    const storedResults = getResults()
+
+    setHistory(storedResults)
+  }, [])
+
   useEffect(() => {
-    const storedResults = loadResults()
+    loadHistory()
 
-    if (storedResults.length > 0) {
-      setHistory(storedResults)
-      return
-    }
+    window.addEventListener(BLOOD_TEST_SAVED_EVENT, loadHistory)
+    return () => window.removeEventListener(BLOOD_TEST_SAVED_EVENT, loadHistory)
+  }, [loadHistory])
 
-    void mockExtractResults().then((results) => {
-      setHistory(results)
-      saveResults(results)
+  const deleteResult = useCallback((id: string) => {
+    setHistory((prev) => {
+      const next = prev.filter((item) => item.id !== id)
+      saveResults(next)
+      return next
     })
   }, [])
 
-  return { history, setHistory }
+  return { history, setHistory, deleteResult }
 }

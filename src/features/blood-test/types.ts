@@ -1,5 +1,4 @@
-export type UploadSourceType = "pdf" | "image" | "csv" | "manual"
-export type BloodTestStatus = "pending" | "processed" | "reviewed"
+export type UploadSourceType = "csv" | "pdf" | "image"
 export type BiomarkerFlag = "low" | "normal" | "high"
 export type ChatRole = "user" | "assistant"
 
@@ -7,24 +6,21 @@ export type Biomarker = {
   id: string
   name: string
   value: number
-  unit?: string
-  referenceRange?:{
-    min: number
-    max:number
+  unit: string
+  referenceRange?: {
+    min?: number
+    max?: number
   }
-  date: string
   flag?: BiomarkerFlag
 }
 
 export type BloodTestResult = {
   id: string
-  userId: string
-  date: string              
-  createdAt: string           
+  testDate: string
+  uploadedAt: string
+  sourceFileName: string
   sourceType: UploadSourceType
-  sourceFileUrl?: string      
   biomarkers: Biomarker[]
-  status: BloodTestStatus
 }
 
 export type ChatMessage  = {
@@ -33,4 +29,25 @@ export type ChatMessage  = {
   message: string
   date: string
   relatedResultId?: string
+}
+
+
+export type PreviewBiomarker = {
+  id: string
+  name: string
+  value: number
+  unit: string
+  referenceRange?: {
+    min?: number
+    max?: number
+  }
+}
+
+ export type UploadPreviewResult = {
+  testDate: string
+  biomarkers: PreviewBiomarker[]
+}
+
+export type FileDropzoneProps = {
+  onFileUpload: (file: File) => void
 }

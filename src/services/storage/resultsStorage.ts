@@ -8,7 +8,7 @@ export function saveResults(results: BloodTestResult[]) {
   localStorage.setItem(KEY, JSON.stringify(results))
 }
 
-export function loadResults(): BloodTestResult[] {
+export function getResults(): BloodTestResult[] {
   if (typeof window === 'undefined') return []
   try {
     const raw = localStorage.getItem(KEY)

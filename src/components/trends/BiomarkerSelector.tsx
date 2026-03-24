@@ -1,6 +1,14 @@
-import React from 'react'
+type BiomarkerSelectorProps = {
+  options: string[]
+  value: string
+  onChange: (value: string) => void
+}
 
-export default function BiomarkerSelector() {
+export default function BiomarkerSelector({
+  options,
+  value,
+  onChange,
+}: BiomarkerSelectorProps) {
   return (
     <div>
       <label htmlFor="biomarker-select" className="sr-only">
@@ -9,10 +17,16 @@ export default function BiomarkerSelector() {
       <select
         id="biomarker-select"
         name="biomarker"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
         className="rounded-md border border-gray-200 px-3 py-2 text-sm"
         aria-label="Select biomarker"
       >
-        <option value="hemoglobin">Hemoglobin</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   )
