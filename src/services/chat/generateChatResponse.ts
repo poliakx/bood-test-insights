@@ -40,6 +40,28 @@ export async function generateChatResponse(
     return `Potentially out-of-range biomarkers in the latest result: ${top}.`
   }
 
+  if (
+    normalizedPrompt.includes('trend') ||
+    normalizedPrompt.includes('change') ||
+    normalizedPrompt.includes('динаміка') ||
+    normalizedPrompt.includes('зміна')
+  ) {
+    if (context.trendSummaries.length === 0) {
+      return 'Not enough data to show trends. Save at least two results to compare.'
+    }
+
+    const lines = context.trendSummaries
+      .slice(0, 4)
+      .map((item) => {
+        const sign = item.delta > 0 ? '+' : ''
+        const arrow = item.direction === 'up' ? '↑' : item.direction === 'down' ? '↓' : '→'
+        return `${item.name}: ${formatNumber(item.latestValue)} ${item.unit} (${arrow} ${sign}${formatNumber(item.delta)})`
+      })
+      .join(', ')
+
+    return `Trend summary across ${context.totalResults} results: ${lines}.`
+  }
+
   const requestedBiomarker = context.availableBiomarkerNames.find((name) =>
     normalizedPrompt.includes(name.toLowerCase()),
   )
