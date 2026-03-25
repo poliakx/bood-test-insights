@@ -21,18 +21,19 @@ export default function ChatInput({ onSend, disabled = false }: ChatInputProps) 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-1 items-center gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center">
       <input
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        placeholder="Ask about saved results..."
+        placeholder="Ask about saved results"
         disabled={disabled}
-        className="h-10 flex-1 rounded-md border border-gray-300 px-3 text-sm outline-none ring-blue-200 focus:ring-2 disabled:bg-gray-100"
+        className="h-10 w-full flex-1 rounded-md border border-gray-300 px-3 text-sm outline-none ring-blue-200 focus:ring-2 disabled:bg-gray-100"
+        aria-label="Ask about saved results"
       />
       <button
         type="submit"
         disabled={disabled || !value.trim()}
-        className="h-10 rounded-md bg-gray-900 px-4 text-sm font-medium text-white transition hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+        className="h-10 w-full rounded-md bg-gray-900 px-4 text-sm font-medium text-white transition hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-auto"
       >
         {disabled ? 'Sending...' : 'Send'}
       </button>

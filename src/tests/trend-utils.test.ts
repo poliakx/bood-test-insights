@@ -1,5 +1,6 @@
-import { buildTrendData } from '@/src/utils/buildTrendData'
-import type { BloodTestResult } from '@/src/features/blood-test/types'
+import { expect, test } from 'vitest'
+import { buildTrendData } from '../utils/buildTrendData'
+import type { BloodTestResult } from '../features/blood-test/types'
 
 function createResult(
   id: string,
@@ -64,4 +65,23 @@ test('buildTrendData can return a single point for biomarker with too few result
 
   const data = buildTrendData(results, 'Iron')
   expect(data).toEqual([{ date: '2024-01-05', value: 52 }])
+})
+
+test('buildTrendData matches biomarker names case-insensitively', () => {
+  const results: BloodTestResult[] = [createResult('r1', '2024-01-05', 'Glucose ', 98)]
+
+  const data = buildTrendData(results, ' glucose')
+  expect(data).toEqual([{ date: '2024-01-05', value: 98 }])
+})
+
+test('buildTrendData skips invalid dates and non-finite values', () => {
+  const results: BloodTestResult[] = [
+    createResult('r1', 'invalid-date', 'Glucose', 98),
+    createResult('r2', '2024-02-01', 'Glucose', Number.POSITIVE_INFINITY),
+    createResult('r3', '2024-03-01', 'Glucose', 101),
+  ]
+
+  const data = buildTrendData(results, 'Glucose')
+
+  expect(data).toEqual([{ date: '2024-03-01', value: 101 }])
 })

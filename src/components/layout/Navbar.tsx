@@ -13,6 +13,7 @@ const NAV_ITEMS: NavItem[] = [
   { name: "Upload", href: "/upload" },
   { name: "Trends", href: "/trends" },
   { name: "History", href: "/history" },
+  { name: "Chat", href: "/chat" },
 ]
 
 export default function Navbar() {

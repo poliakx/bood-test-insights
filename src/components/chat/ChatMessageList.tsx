@@ -11,7 +11,7 @@ export default function ChatMessageList({ messages, isLoading }: ChatMessageList
   if (messages.length === 0) {
     return (
       <div className="rounded-md border border-gray-200 bg-gray-50 p-3 text-sm text-gray-500">
-        Ask a question about your saved blood test results.
+        No questions yet. Ask about your latest saved result, abnormal markers, or trends.
       </div>
     )
   }

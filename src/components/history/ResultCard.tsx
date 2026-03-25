@@ -18,10 +18,10 @@ export default function ResultCard({
   const hasMore = result.biomarkers.length > previewItems.length
 
   return (
-    <article className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm">
-      <div className="flex items-center justify-between">
-        <span className="font-medium text-gray-900">{result.testDate}</span>
-        <span className="rounded bg-gray-200 px-2 py-0.5 text-xs uppercase text-gray-600">
+    <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <span className="text-lg font-semibold text-gray-900">{result.testDate}</span>
+        <span className="rounded bg-gray-100 px-2 py-0.5 text-xs uppercase text-gray-600">
           {result.sourceType}
         </span>
       </div>
@@ -39,7 +39,7 @@ export default function ResultCard({
         {hasMore ? ` • +${result.biomarkers.length - previewItems.length} more` : ''}
       </p>
 
-      <div className="mt-3 flex items-center gap-2">
+      <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
         <button
           type="button"
           onClick={onToggleDetails}
@@ -52,7 +52,7 @@ export default function ResultCard({
           onClick={onDelete}
           className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-100"
         >
-          Delete result
+          Remove result
         </button>
       </div>
 

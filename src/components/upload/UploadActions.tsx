@@ -13,7 +13,7 @@ export default function UploadActions({
 }: UploadActionsProps) {
   return (
     <>
-      <div className="mt-3 flex items-center gap-3">
+      <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="button"
           onClick={() => {
@@ -22,7 +22,7 @@ export default function UploadActions({
           disabled={isLoading}
           className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:bg-blue-300"
         >
-          {isLoading ? "Extracting..." : "Extract results"}
+          {isLoading ? "Extracting results..." : "Extract results"}
         </button>
         {sourceType ? (
           <span className="text-sm text-gray-600">
@@ -32,7 +32,9 @@ export default function UploadActions({
       </div>
 
       {errorMessage ? (
-        <p className="mt-2 text-sm text-red-600">{errorMessage}</p>
+        <p className="mt-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+          {errorMessage}
+        </p>
       ) : null}
     </>
   )

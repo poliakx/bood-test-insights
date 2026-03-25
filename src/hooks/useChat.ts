@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import type { ChatMessage } from '../features/blood-test/types'
-import { getResults } from '../services/storage/resultsStorage'
-import { buildChatContext } from '../services/chat/buildChatContext'
-import { generateChatResponse } from '../services/chat/generateChatResponse'
+import { getChatResponseForPrompt } from '@/src/services/integration/getChatResponseForPrompt'
 
 function createMessage(role: ChatMessage['role'], message: string): ChatMessage {
   return {
@@ -28,14 +26,12 @@ export default function useChat() {
     setIsLoading(true)
 
     try {
-      const results = getResults()
-      const context = buildChatContext(results)
-      const responseText = await generateChatResponse(trimmed, context)
+      const responseText = await getChatResponseForPrompt(trimmed)
       const assistantMessage = createMessage('assistant', responseText)
 
       setMessages((prev) => [...prev, assistantMessage])
     } catch {
-      setError('Failed to generate response')
+      setError('Could not generate a response. Please try again.')
       const assistantMessage = createMessage(
         'assistant',
         'Something went wrong while generating a response. Please try again.',

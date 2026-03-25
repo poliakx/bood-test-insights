@@ -24,7 +24,7 @@ export default function BiomarkerEditorRow({
 }: BiomarkerEditorRowProps) {
   return (
     <div
-      className="grid grid-cols-1 gap-2 rounded-lg bg-gray-50 p-3 text-sm sm:grid-cols-6"
+      className="grid grid-cols-1 gap-3 rounded-lg bg-gray-50 p-3 text-sm sm:grid-cols-6"
     >
       <label className="flex flex-col gap-1">
         <span className="text-xs text-gray-500">Name</span>
@@ -32,7 +32,7 @@ export default function BiomarkerEditorRow({
           type="text"
           value={biomarker.name}
           onChange={(e) => onChange(biomarker.id, "name", e.target.value)}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
         {meta?.label ? (
           <span className="text-xs text-gray-500">Meta: {meta.label}</span>
@@ -45,7 +45,7 @@ export default function BiomarkerEditorRow({
           type="number"
           value={biomarker.value}
           onChange={(e) => onChange(biomarker.id, "value", e.target.value)}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
       </label>
 
@@ -56,7 +56,7 @@ export default function BiomarkerEditorRow({
           value={biomarker.unit}
           onChange={(e) => onChange(biomarker.id, "unit", e.target.value)}
           placeholder={meta?.unit ?? "e.g. mg/dL"}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
       </label>
 
@@ -66,7 +66,7 @@ export default function BiomarkerEditorRow({
           type="number"
           value={biomarker.referenceRange?.min ?? ""}
           onChange={(e) => onChange(biomarker.id, "refMin", e.target.value)}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
       </label>
 
@@ -76,7 +76,7 @@ export default function BiomarkerEditorRow({
           type="number"
           value={biomarker.referenceRange?.max ?? ""}
           onChange={(e) => onChange(biomarker.id, "refMax", e.target.value)}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
       </label>
 
@@ -86,7 +86,7 @@ export default function BiomarkerEditorRow({
           onClick={() => onDelete(biomarker.id)}
           className="w-full rounded-md border border-red-300 px-3 py-2 text-sm text-red-600 hover:bg-red-50"
         >
-          Delete
+          Remove biomarker
         </button>
       </div>
     </div>

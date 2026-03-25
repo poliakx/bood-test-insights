@@ -1,5 +1,5 @@
 import type { BloodTestResult, UploadSourceType } from "@/src/features/blood-test/types"
-import { mockExtractResults } from "./mockExtractResults"
+import { mockExtractResults } from "@/src/mocks/mockExtractResults"
 
 export function detectSourceType(file: File): UploadSourceType | null {
   const lowerName = file.name.toLowerCase()

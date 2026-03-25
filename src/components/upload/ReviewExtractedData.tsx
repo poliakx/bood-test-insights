@@ -35,8 +35,11 @@ export default function ReviewExtractedData({
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-900">
-        Review Extracted Data
+        Review extracted data
       </h3>
+      <p className="mt-2 text-sm text-gray-600">
+        Confirm the test date, adjust biomarker values if needed, then save the result.
+      </p>
 
       <label className="mt-4 flex max-w-xs flex-col gap-1">
         <span className="text-xs text-gray-500">Test date</span>
@@ -44,7 +47,7 @@ export default function ReviewExtractedData({
           type="date"
           value={result.testDate}
           onChange={(e) => onTestDateChange(e.target.value)}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
       </label>
 
@@ -68,10 +71,12 @@ export default function ReviewExtractedData({
         Add biomarker
       </button>
 
-      <div className="mt-4 flex items-center gap-3">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
         <SaveResultButton onClick={onSave} />
         {saveMessage ? (
-          <span className="text-sm text-green-700">{saveMessage}</span>
+          <span className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
+            {saveMessage}
+          </span>
         ) : null}
       </div>
     </div>

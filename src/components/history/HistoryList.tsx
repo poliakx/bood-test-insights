@@ -9,7 +9,11 @@ export default function HistoryList() {
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   if (history.length === 0) {
-    return <p className="text-sm text-gray-500">No blood test history yet.</p>
+    return (
+      <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-3 text-sm text-gray-500">
+        No saved results yet. Upload and save a test to build your history.
+      </p>
+    )
   }
 
   return (
