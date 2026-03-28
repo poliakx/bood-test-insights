@@ -1,5 +1,5 @@
-import PageWrapper from "@/src/components/ui/PageWrapper"
-import ChatPanel from "@/src/components/chat/ChatPanel"
+import PageWrapper from "@/components/ui/PageWrapper"
+import ChatPanel from "@/components/chat/ChatPanel"
 
 export default function ChatPage() {
   return (
@@ -17,3 +17,4 @@ export default function ChatPage() {
     </PageWrapper>
   )
 }
+

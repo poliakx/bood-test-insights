@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ChatMessage } from '../features/blood-test/types'
-import { getChatResponseForPrompt } from '@/src/services/integration/getChatResponseForPrompt'
+import { getChatResponseForPrompt } from '@/services/integration/getChatResponseForPrompt'
 
 function createMessage(role: ChatMessage['role'], message: string): ChatMessage {
   return {
@@ -58,3 +58,4 @@ export default function useChat() {
 
   return { messages, isLoading, error, send, clear }
 }
+

@@ -2,11 +2,11 @@
 
 import Link from 'next/link'
 import ReviewExtractedData from './ReviewExtractedData'
-import TrendsChart from '@/src/components/trends/TrendsChart'
-import EmptyState from '@/src/components/ui/EmptyState'
-import ErrorState from '@/src/components/ui/ErrorState'
+import TrendsChart from '@/components/trends/TrendsChart'
+import EmptyState from '@/components/ui/EmptyState'
+import ErrorState from '@/components/ui/ErrorState'
 import { getBiomarkerMeta } from './getBiomarkerMeta'
-import useUploadReviewData from '@/src/hooks/useUploadReviewData'
+import useUploadReviewData from '@/hooks/useUploadReviewData'
 
 export default function UploadReviewPanel() {
   const {
@@ -96,3 +96,4 @@ export default function UploadReviewPanel() {
     </section>
   )
 }
+

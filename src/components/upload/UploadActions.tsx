@@ -1,4 +1,4 @@
-import ErrorState from '@/src/components/ui/ErrorState'
+import ErrorState from '@/components/ui/ErrorState'
 
 type UploadActionsProps = {
   isLoading: boolean
@@ -37,3 +37,4 @@ export default function UploadActions({
     </>
   )
 }
+

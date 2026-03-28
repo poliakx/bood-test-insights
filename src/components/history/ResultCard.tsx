@@ -1,5 +1,5 @@
-import type { BloodTestResult } from '@/src/features/blood-test/types'
-import { formatShort } from '@/src/utils/date'
+import type { BloodTestResult } from '@/features/blood-test/types'
+import { formatShort } from '@/utils/date'
 
 type ResultCardProps = {
   result: BloodTestResult
@@ -71,3 +71,4 @@ export default function ResultCard({
     </article>
   )
 }
+

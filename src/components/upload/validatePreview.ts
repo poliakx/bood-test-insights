@@ -1,4 +1,4 @@
-import type { UploadPreviewResult } from "@/src/features/blood-test/types"
+import type { UploadPreviewResult } from "@/features/blood-test/types"
 
 export function validatePreview(preview: UploadPreviewResult): string | null {
   if (!preview.testDate.trim()) return "Test date is required"
@@ -13,3 +13,4 @@ export function validatePreview(preview: UploadPreviewResult): string | null {
 
   return null
 }
+

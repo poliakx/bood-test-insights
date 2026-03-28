@@ -1,6 +1,6 @@
 "use client"
 
-import type { ChatMessage } from '@/src/features/blood-test/types'
+import type { ChatMessage } from '@/features/blood-test/types'
 
 type ChatMessageListProps = {
   messages: ChatMessage[]
@@ -34,3 +34,4 @@ export default function ChatMessageList({ messages, isLoading }: ChatMessageList
     </div>
   )
 }
+

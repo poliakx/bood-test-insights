@@ -1,9 +1,9 @@
 "use client"
 
-import useChat from '@/src/hooks/useChat'
+import useChat from '@/hooks/useChat'
 import ChatMessageList from './ChatMessageList'
 import ChatInput from './ChatInput'
-import ErrorState from '@/src/components/ui/ErrorState'
+import ErrorState from '@/components/ui/ErrorState'
 
 export default function ChatPanel() {
   const { messages, isLoading, error, send, clear } = useChat()
@@ -48,3 +48,4 @@ export default function ChatPanel() {
     </section>
   )
 }
+

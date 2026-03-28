@@ -1,6 +1,6 @@
 import SaveResultButton from "./SaveResultButton"
 import BiomarkerEditorRow from "./BiomarkerEditorRow"
-import type { UploadPreviewResult } from "@/src/features/blood-test/types"
+import type { UploadPreviewResult } from "@/features/blood-test/types"
 
 type BiomarkerMeta = {
   label: string
@@ -82,3 +82,4 @@ export default function ReviewExtractedData({
     </div>
   )
 }
+

@@ -1,5 +1,5 @@
-import type { BloodTestResult, UploadSourceType } from "@/src/features/blood-test/types"
-import { mockExtractResults } from "@/src/mocks/mockExtractResults"
+import type { BloodTestResult, UploadSourceType } from "@/features/blood-test/types"
+import { mockExtractResults } from "@/mocks/mockExtractResults"
 
 export function detectSourceType(file: File): UploadSourceType | null {
   const lowerName = file.name.toLowerCase()
@@ -27,3 +27,4 @@ export async function extractResults(file: File): Promise<BloodTestResult[]> {
     uploadedAt: new Date().toISOString(),
   }))
 }
+

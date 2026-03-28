@@ -9,8 +9,8 @@ import {
   YAxis,
 } from 'recharts'
 import BiomarkerSelector from './BiomarkerSelector'
-import useTrendsData from '@/src/hooks/useTrendsData'
-import EmptyState from '@/src/components/ui/EmptyState'
+import useTrendsData from '@/hooks/useTrendsData'
+import EmptyState from '@/components/ui/EmptyState'
 
 export default function TrendsChart() {
   const {
@@ -89,3 +89,4 @@ export default function TrendsChart() {
     </div>
   )
 }
+

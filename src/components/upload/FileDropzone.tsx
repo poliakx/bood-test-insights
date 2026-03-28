@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react'
-import { FileDropzoneProps } from "@/src/features/blood-test/types"
+import { FileDropzoneProps } from "@/features/blood-test/types"
 
 
 export default function FileDropzone({ onFileUpload }: FileDropzoneProps) {

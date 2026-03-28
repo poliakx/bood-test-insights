@@ -3,11 +3,11 @@ import type {
   BloodTestResult,
   PreviewBiomarker,
   UploadPreviewResult,
-} from '@/src/features/blood-test/types'
-import { clearUploadDraft, getUploadDraft } from '@/src/services/storage/uploadDraftStorage'
-import { saveReviewedUploadResult } from '@/src/services/integration/saveReviewedUploadResult'
-import { getBiomarkerMeta } from '@/src/components/upload/getBiomarkerMeta'
-import { validatePreview } from '@/src/components/upload/validatePreview'
+} from '@/features/blood-test/types'
+import { clearUploadDraft, getUploadDraft } from '@/services/storage/uploadDraftStorage'
+import { saveReviewedUploadResult } from '@/services/integration/saveReviewedUploadResult'
+import { getBiomarkerMeta } from '@/components/upload/getBiomarkerMeta'
+import { validatePreview } from '@/components/upload/validatePreview'
 
 export default function useUploadReviewData() {
   const initialDraft = useMemo(() => getUploadDraft(), [])
@@ -139,3 +139,4 @@ export default function useUploadReviewData() {
     handleSaveResult,
   }
 }
+

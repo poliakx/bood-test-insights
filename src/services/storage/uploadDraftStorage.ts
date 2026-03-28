@@ -1,4 +1,4 @@
-import type { UploadPreviewResult, UploadSourceType } from '@/src/features/blood-test/types'
+import type { UploadPreviewResult, UploadSourceType } from '@/features/blood-test/types'
 
 const KEY = 'blood_test_upload_draft'
 
@@ -41,3 +41,4 @@ export function clearUploadDraft() {
   if (typeof window === 'undefined') return
   sessionStorage.removeItem(KEY)
 }
+

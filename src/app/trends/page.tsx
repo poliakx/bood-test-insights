@@ -1,5 +1,5 @@
-import PageWrapper from "@/src/components/ui/PageWrapper"
-import TrendsChart from "@/src/components/trends/TrendsChart"
+import PageWrapper from "@/components/ui/PageWrapper"
+import TrendsChart from "@/components/trends/TrendsChart"
 
 export default function TrendsPage() {
   return (
@@ -17,3 +17,4 @@ export default function TrendsPage() {
     </PageWrapper>
   )
 }
+

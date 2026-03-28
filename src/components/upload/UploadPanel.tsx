@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation'
 import { useState } from "react"
 import FileDropzone from "./FileDropzone"
 import UploadActions from "./UploadActions"
-import type { BloodTestResult } from "@/src/features/blood-test/types"
-import { detectSourceType, extractResults } from "@/src/services/extraction/extractResults"
-import { saveUploadDraft } from '@/src/services/storage/uploadDraftStorage'
+import type { BloodTestResult } from "@/features/blood-test/types"
+import { detectSourceType, extractResults } from "@/services/extraction/extractResults"
+import { saveUploadDraft } from '@/services/storage/uploadDraftStorage'
 
 type SourceType = BloodTestResult["sourceType"]
 

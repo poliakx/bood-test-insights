@@ -1,4 +1,4 @@
-import type { BloodTestResult } from '@/src/features/blood-test/types'
+import type { BloodTestResult } from '@/features/blood-test/types'
 
 export type TrendDataPoint = {
   date: string

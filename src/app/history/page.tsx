@@ -1,5 +1,5 @@
-import PageWrapper from "@/src/components/ui/PageWrapper"
-import HistoryList from "@/src/components/history/HistoryList"
+import PageWrapper from "@/components/ui/PageWrapper"
+import HistoryList from "@/components/history/HistoryList"
 
 export default function HistoryPage() {
   return (
@@ -17,3 +17,4 @@ export default function HistoryPage() {
     </PageWrapper>
   )
 }
+

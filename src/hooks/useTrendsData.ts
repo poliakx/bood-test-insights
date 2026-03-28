@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import useBloodTestHistory from '@/src/hooks/useBloodTestHistory'
-import { buildTrendData } from '@/src/utils/buildTrendData'
-import { formatShort } from '@/src/utils/date'
+import useBloodTestHistory from '@/hooks/useBloodTestHistory'
+import { buildTrendData } from '@/utils/buildTrendData'
+import { formatShort } from '@/utils/date'
 
 export default function useTrendsData() {
   const { history } = useBloodTestHistory()
@@ -61,3 +61,4 @@ export default function useTrendsData() {
     delta,
   }
 }
+

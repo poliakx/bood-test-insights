@@ -1,5 +1,5 @@
-import PageWrapper from '@/src/components/ui/PageWrapper'
-import UploadReviewPanel from '@/src/components/upload/UploadReviewPanel'
+import PageWrapper from '@/components/ui/PageWrapper'
+import UploadReviewPanel from '@/components/upload/UploadReviewPanel'
 
 export default function UploadReviewPage() {
   return (
@@ -17,3 +17,4 @@ export default function UploadReviewPage() {
     </PageWrapper>
   )
 }
+

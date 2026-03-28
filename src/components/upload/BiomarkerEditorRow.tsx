@@ -1,4 +1,4 @@
-import type { PreviewBiomarker } from "@/src/features/blood-test/types"
+import type { PreviewBiomarker } from "@/features/blood-test/types"
 
 type BiomarkerMeta = {
   label: string
@@ -92,3 +92,4 @@ export default function BiomarkerEditorRow({
     </div>
   )
 }
+

@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from 'react'
-import useBloodTestHistory from '@/src/hooks/useBloodTestHistory'
+import useBloodTestHistory from '@/hooks/useBloodTestHistory'
 import ResultCard from './ResultCard'
-import EmptyState from '@/src/components/ui/EmptyState'
+import EmptyState from '@/components/ui/EmptyState'
 
 export default function HistoryList() {
   const { history, deleteResult } = useBloodTestHistory()
@@ -35,3 +35,4 @@ export default function HistoryList() {
     </ul>
   )
 }
+

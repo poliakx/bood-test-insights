@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import PageWrapper from '@/src/components/ui/PageWrapper'
-import { getUploadDraft } from '@/src/services/storage/uploadDraftStorage'
+import PageWrapper from '@/components/ui/PageWrapper'
+import { getUploadDraft } from '@/services/storage/uploadDraftStorage'
 
 export default function UploadExtractingPage() {
   const router = useRouter()
@@ -43,3 +43,4 @@ export default function UploadExtractingPage() {
     </PageWrapper>
   )
 }
+
