@@ -1,5 +1,5 @@
 import type { BloodTestResult, UploadSourceType } from "@/features/blood-test/types"
-import { mockExtractResults } from "@/mocks/mockExtractResults"
+import { mockExtractResults } from "../../mocks/mockExtractResults"
 
 export function detectSourceType(file: File): UploadSourceType | null {
   const lowerName = file.name.toLowerCase()
@@ -19,12 +19,16 @@ export async function extractResults(file: File): Promise<BloodTestResult[]> {
   }
 
   const mocked = await mockExtractResults()
+  const now = new Date()
+  const today = now.toISOString().slice(0, 10)
+  const uploadedAt = now.toISOString()
 
   return mocked.map((result) => ({
     ...result,
+    testDate: today,
     sourceType,
     sourceFileName: file.name,
-    uploadedAt: new Date().toISOString(),
+    uploadedAt,
   }))
 }
 

@@ -1,4 +1,4 @@
-import { MOCK_BLOOD_TEST_RESULTS } from "@/mocks/mockExtractResults";
+import { MOCK_BLOOD_TEST_RESULTS } from "../../mocks/mockExtractResults";
 import type { PreviewBiomarker, UploadPreviewResult } from "@/features/blood-test/types";
 
 export function extractMockData(): UploadPreviewResult {
