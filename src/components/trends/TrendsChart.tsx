@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 import BiomarkerSelector from './BiomarkerSelector'
 import useTrendsData from '@/src/hooks/useTrendsData'
+import EmptyState from '@/src/components/ui/EmptyState'
 
 export default function TrendsChart() {
   const {
@@ -24,17 +25,13 @@ export default function TrendsChart() {
 
   if (history.length === 0) {
     return (
-      <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-3 text-sm text-gray-500">
-        No trend data yet. Save a result to start comparing biomarkers over time.
-      </p>
+      <EmptyState message="No trend data yet. Save a result to start comparing biomarkers over time." />
     )
   }
 
   if (biomarkerOptions.length === 0) {
     return (
-      <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-3 text-sm text-gray-500">
-        No biomarkers were found in saved history.
-      </p>
+      <EmptyState message="No biomarkers were found in saved history." />
     )
   }
 
@@ -47,9 +44,7 @@ export default function TrendsChart() {
       />
 
       {chartData.length < 2 ? (
-        <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-3 text-sm text-gray-500">
-          Not enough saved results to display a trend yet.
-        </p>
+        <EmptyState message="Not enough saved results to display a trend yet." />
       ) : (
         <>
           <div className="w-full min-w-0 overflow-hidden rounded-md border border-gray-200 bg-white p-2">

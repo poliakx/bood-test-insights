@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import useBloodTestHistory from '@/src/hooks/useBloodTestHistory'
 import ResultCard from './ResultCard'
+import EmptyState from '@/src/components/ui/EmptyState'
 
 export default function HistoryList() {
   const { history, deleteResult } = useBloodTestHistory()
@@ -10,9 +11,7 @@ export default function HistoryList() {
 
   if (history.length === 0) {
     return (
-      <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-3 text-sm text-gray-500">
-        No saved results yet. Upload and save a test to build your history.
-      </p>
+      <EmptyState message="No saved results yet. Upload and save a test to build your history." />
     )
   }
 

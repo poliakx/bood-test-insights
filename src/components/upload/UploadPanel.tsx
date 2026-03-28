@@ -25,6 +25,11 @@ export default function UploadPanel() {
       return
     }
 
+    if (selectedFile.size === 0) {
+      setErrorMessage("Selected file is empty. Upload a non-empty CSV, PDF, or image file.")
+      return
+    }
+
     const detectedType = detectSourceType(selectedFile)
     if (!detectedType) {
       setErrorMessage("Unsupported file type. Upload a CSV, PDF, or image file.")

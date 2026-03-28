@@ -3,6 +3,7 @@
 import useChat from '@/src/hooks/useChat'
 import ChatMessageList from './ChatMessageList'
 import ChatInput from './ChatInput'
+import ErrorState from '@/src/components/ui/ErrorState'
 
 export default function ChatPanel() {
   const { messages, isLoading, error, send, clear } = useChat()
@@ -33,11 +34,7 @@ export default function ChatPanel() {
         </div>
       ) : null}
 
-      {error ? (
-        <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-          {error}
-        </p>
-      ) : null}
+      {error ? <ErrorState message={error} /> : null}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <ChatInput onSend={send} disabled={isLoading} />
         <button

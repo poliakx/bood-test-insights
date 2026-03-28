@@ -1,3 +1,5 @@
+import ErrorState from '@/src/components/ui/ErrorState'
+
 type UploadActionsProps = {
   isLoading: boolean
   sourceType: string
@@ -31,11 +33,7 @@ export default function UploadActions({
         ) : null}
       </div>
 
-      {errorMessage ? (
-        <p className="mt-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-          {errorMessage}
-        </p>
-      ) : null}
+      {errorMessage ? <ErrorState message={errorMessage} className="mt-3" /> : null}
     </>
   )
 }

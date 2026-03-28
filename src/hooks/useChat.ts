@@ -30,11 +30,20 @@ export default function useChat() {
       const assistantMessage = createMessage('assistant', responseText)
 
       setMessages((prev) => [...prev, assistantMessage])
-    } catch {
-      setError('Could not generate a response. Please try again.')
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message.toLowerCase() : ''
+      const aiUnavailable = errorMessage.includes('ai unavailable')
+
+      setError(
+        aiUnavailable
+          ? 'AI is currently unavailable. Please try again later.'
+          : 'Could not generate a response. Please try again.',
+      )
       const assistantMessage = createMessage(
         'assistant',
-        'Something went wrong while generating a response. Please try again.',
+        aiUnavailable
+          ? 'AI is currently unavailable. Please try again later.'
+          : 'Something went wrong while generating a response. Please try again.',
       )
       setMessages((prev) => [...prev, assistantMessage])
     } finally {

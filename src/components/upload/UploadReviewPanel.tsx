@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import ReviewExtractedData from './ReviewExtractedData'
 import TrendsChart from '@/src/components/trends/TrendsChart'
+import EmptyState from '@/src/components/ui/EmptyState'
+import ErrorState from '@/src/components/ui/ErrorState'
 import { getBiomarkerMeta } from './getBiomarkerMeta'
 import useUploadReviewData from '@/src/hooks/useUploadReviewData'
 
@@ -24,10 +26,10 @@ export default function UploadReviewPanel() {
   if (!result) {
     return (
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-gray-900">No extracted data</h2>
-        <p className="mt-2 text-sm text-gray-600">
-          Upload and extract a file first, then review the extracted biomarkers here.
-        </p>
+        <EmptyState
+          title="No extracted data"
+          message="Upload and extract a file first, then review the extracted biomarkers here."
+        />
         <Link
           href="/upload"
           className="mt-4 inline-flex rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
@@ -54,11 +56,7 @@ export default function UploadReviewPanel() {
       <div
         style={isSaved ? { opacity: 0, pointerEvents: 'none', maxHeight: 0, overflow: 'hidden', transition: 'opacity 0.35s ease, max-height 0.45s ease' } : { opacity: 1, maxHeight: '9999px', transition: 'opacity 0.35s ease, max-height 0.45s ease' }}
       >
-        {errorMessage ? (
-          <p className="mb-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-            {errorMessage}
-          </p>
-        ) : null}
+        {errorMessage ? <ErrorState message={errorMessage} className="mb-4" /> : null}
 
         <ReviewExtractedData
           result={result}
