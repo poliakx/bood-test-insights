@@ -109,6 +109,8 @@ Current suite covers:
 
 AI tools were used primarily to speed up UI scaffolding, component structuring, and implementation exploration for upload flow, validation, and contextual chat behavior.
 
+Important: this MVP uses a mock AI approach. Extraction for PDF/image files is simulated, and chat responses are deterministic rule-based outputs rather than responses from a real LLM provider.
+
 ## 9. AI usage details
 
 Generated code was manually reviewed and refined. The domain model was tightened, over-complex suggestions were simplified, and state management plus validation flows were adjusted to match MVP scope.
