@@ -14,27 +14,24 @@ export default function UploadActions({
   onExtract,
 }: UploadActionsProps) {
   return (
-    <>
-      <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
+    <div className="space-y-3">
+      <div className="flex items-center gap-3">
         <button
           type="button"
-          onClick={() => {
-            void onExtract()
-          }}
+          onClick={() => { void onExtract() }}
           disabled={isLoading}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:bg-blue-300"
+          className="rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {isLoading ? "Extracting results..." : "Extract results"}
+          {isLoading ? "Extracting…" : "Extract results"}
         </button>
         {sourceType ? (
-          <span className="text-sm text-gray-600">
-            Detected type: {sourceType.toUpperCase()}
+          <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-500">
+            {sourceType.toUpperCase()}
           </span>
         ) : null}
       </div>
-
-      {errorMessage ? <ErrorState message={errorMessage} className="mt-3" /> : null}
-    </>
+      {errorMessage ? <ErrorState message={errorMessage} /> : null}
+    </div>
   )
 }
 

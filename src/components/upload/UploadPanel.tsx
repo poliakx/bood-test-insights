@@ -73,33 +73,19 @@ export default function UploadPanel() {
   }
 
   return (
-    <section className="space-y-6">
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-gray-900">Choose file</h2>
-        <p className="mt-2 text-sm text-gray-600">
-          Select a CSV, PDF, or image file to extract biomarker values for review.
-        </p>
-
-        <div className="mt-4">
-          <FileDropzone
-            onFileUpload={(file) => {
-              setSelectedFile(file)
-              setErrorMessage("")
-            }}
-          />
-
-          <div className="mt-3 min-h-5 text-sm text-gray-600">
-            {selectedFile ? `Selected file: ${selectedFile.name}` : 'No file selected yet.'}
-          </div>
-
-          <UploadActions
-            isLoading={isLoading}
-            sourceType={sourceType}
-            errorMessage={errorMessage}
-            onExtract={handleExtract}
-          />
-        </div>
-      </div>
-    </section>
+    <div className="space-y-4">
+      <FileDropzone
+        onFileUpload={(file) => {
+          setSelectedFile(file)
+          setErrorMessage("")
+        }}
+      />
+      <UploadActions
+        isLoading={isLoading}
+        sourceType={sourceType}
+        errorMessage={errorMessage}
+        onExtract={handleExtract}
+      />
+    </div>
   )
 }
