@@ -2,9 +2,21 @@ import { afterEach, describe, expect, test, vi } from 'vitest'
 import { extractResults, detectSourceType } from '../services/extraction/extractResults'
 import { mapRawToBiomarker, mapRawToResult } from '../features/blood-test/mappers'
 
+function stubFetch(overrides: { ok: boolean; json?: () => Promise<unknown> }) {
+  const fetchMock = vi.fn(() =>
+    Promise.resolve({
+      ok: overrides.ok,
+      json: overrides.json ?? (() => Promise.resolve({})),
+    }),
+  )
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
+
 describe('extraction helpers', () => {
   afterEach(() => {
     vi.useRealTimers()
+    vi.unstubAllGlobals()
   })
 
   test('detectSourceType recognizes supported file types', () => {
@@ -20,18 +32,38 @@ describe('extraction helpers', () => {
     ).rejects.toThrow('Unsupported file type. Please upload CSV, PDF, or image.')
   })
 
-  test('extractResults maps uploaded file metadata onto mocked results', async () => {
+  test('extractResults maps uploaded file metadata onto API-returned biomarkers', async () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-03-25T08:00:00.000Z'))
+
+    stubFetch({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          testDate: '2026-03-25',
+          biomarkers: [{ name: 'Glucose', value: 96, unit: 'mg/dL' }],
+        }),
+    })
 
     const results = await extractResults(
       new File(['name,value\nGlucose,96'], 'upload.csv', { type: 'text/csv' }),
     )
 
     expect(results.length).toBeGreaterThan(0)
-    expect(results.every((result: Awaited<typeof results>[number]) => result.sourceType === 'csv')).toBe(true)
-    expect(results.every((result: Awaited<typeof results>[number]) => result.sourceFileName === 'upload.csv')).toBe(true)
-    expect(results.every((result: Awaited<typeof results>[number]) => result.uploadedAt === '2026-03-25T08:00:00.000Z')).toBe(true)
+    expect(results.every((result) => result.sourceType === 'csv')).toBe(true)
+    expect(results.every((result) => result.sourceFileName === 'upload.csv')).toBe(true)
+    expect(results.every((result) => result.uploadedAt === '2026-03-25T08:00:00.000Z')).toBe(true)
+  })
+
+  test('extractResults throws when API returns an error', async () => {
+    stubFetch({
+      ok: false,
+      json: () => Promise.resolve({ error: 'No blood test biomarkers found' }),
+    })
+
+    await expect(
+      extractResults(new File(['bad content'], 'report.pdf', { type: 'application/pdf' })),
+    ).rejects.toThrow('No blood test biomarkers found')
   })
 
   test('mapRawToBiomarker coerces values and applies defaults', () => {
